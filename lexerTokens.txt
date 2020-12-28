@@ -1,0 +1,43 @@
+( STRING_CONSTANT, string, 1 )
+,( INCREMENT ++, 1 )
+,( IDENTIFIER, osama, 1 )
+,( INVALID LEXENE, , 1 )
+,( if, if, 2 )
+,( IDENTIFIER, osama, 2 )
+,( OPEN_PAREN (, 2 )
+,( IDENTIFIER, do, 2 )
+,( IDENTIFIER, this, 2 )
+,( CLOSE_PAREN ), 2 )
+,( Comment, comment, 2 )
+,( INVALID LEXENE, , 2 )
+,( else, else, 3 )
+,( OPEN_PAREN (, 3 )
+,( IDENTIFIER, do, 3 )
+,( IDENTIFIER, this, 3 )
+,( CLOSE_PAREN ), 3 )
+,( INVALID LEXENE, , 3 )
+,( function, function, 4 )
+,( DOT ., 4 )
+,( IDENTIFIER, method, 4 )
+,( OPEN_PAREN (, 4 )
+,( CLOSE_PAREN ), 4 )
+,( OPEN_CURLY {, 4 )
+,( INVALID LEXENE, , 4 )
+,( Multi-Comment,  multiline
+    cooment , 5 )
+,( INVALID LEXENE, , 6 )
+,( IDENTIFIER, value, 7 )
+,( COMPOUND_OP +=, 7 )
+,( INT_CONSTANT, 988, 7 )
+,( INVALID LEXENE, , 7 )
+,( IDENTIFIER, num, 8 )
+,( ASSIGN =, 8 )
+,( FLOAT_CONSTANT 912.876 8 )
+,( INVALID LEXENE, , 8 )
+,( IDENTIFIER, minus, 9 )
+,( ASSIGN =, 9 )
+,( INT_CONSTANT, 18, 9 )
+,( PM -, 9 )
+,( INT_CONSTANT, 9, 9 )
+,( INVALID LEXENE, , 9 )
+,( CLOSE_CURLY }, 10 )

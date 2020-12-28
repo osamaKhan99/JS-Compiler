@@ -1,0 +1,10 @@
+"string" ++ osama
+if osama ( do this ) //comment
+else ( do this )
+function.method(){
+    /* multiline
+    cooment */
+    value += 988
+    num = 912.876
+    minus = 18-9
+}
