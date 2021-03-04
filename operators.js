@@ -33,5 +33,6 @@ const OPERATORS = {
     ')':    'CLOSE_PAREN'
 
 }
+var s = "ss\\sss\\*ff*\\"
 
 exports.OPERATORS = OPERATORS

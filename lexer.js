@@ -13,17 +13,17 @@ for (var i in OPERATORS) {
     opMatch += i.replace(/[?|^&(){}\[\]+\-*\/\.]/g, '\\$&');
 
 }
-
+// Regex
 var opRegExp = new RegExp(opMatch),
     fpRegExp = /^\d+\.\d*(?:[eE][-+]?\d+)?|^\d+(?:\.\d*)?[eE][-+]?\d+|^\.\d+(?:[eE][-+]?\d+)?/,
     intRegExp = /[+-]?0[xX][\da-fA-F]+|^0[0-7]*|^\d+/,
-    multiCommentRegExp = /^\/\*(.|[\r\n])*?\*\//m,
+    multiCommentRegExp = /\/\*[^*]*\*+(?:[^/*][^*]*\*+)*\//g,
     commentRegExp = /^\/\/.*/,
     identRegExp = /^[$_\w]+/,
     wsRegExp = /^[\ \t]+/,
     strRegExp = /^'([^'\\]|\\.)*'|^"([^"\\]|\\.)*"/;
 
-var code = fs.readFileSync("./mytext.txt").toString().toLowerCase(),
+var code = fs.readFileSync("./lexical_sample_file.txt").toString().toLowerCase(),
 current = 0,
 lineNo = 1,
 tokens = []
@@ -40,15 +40,7 @@ while(current < code.length){
     else if((m = sub.match(wsRegExp))){
         m[0].replace(/\s/g,'')
     }
-    else if ((m = sub.match(multiCommentRegExp ))) {
-        tokens.push(`( ${KW.multicomment}, ${m[0].slice(2, -2)}, ${lineNo} )\n`)
-
-        var lines = m[0].split('\n');
-        lineNo += lines.length - 1;
-
-    // Comment
-    }
-     else if ((m = subline.match(commentRegExp))) {
+    else if ((m = subline.match(commentRegExp))) {
         tokens.push(`( ${KW.comments}, ${m[0].substr(2)}, ${lineNo} )\n`)
     }
     else if ((m = sub.match(strRegExp))){
@@ -68,6 +60,11 @@ while(current < code.length){
     else if((m = sub.match(opRegExp))) {
         tokens.push(`( ${OPERATORS[m[0]]} ${m[0]}, ${lineNo} )\n`)
     }
+    else if ((m = sub.match(multiCommentRegExp ))) {
+        tokens.push(`( ${KW.multicomment}, ${m[0].slice(2, -2)}, ${lineNo} )\n`)
+        var lines = m[0].split('\n');
+        lineNo += lines.length - 1;
+    }
     else{
         tokens.push(`( INVALID LEXENE, ${sub[0]}, ${lineNo} )\n`)
     }
@@ -78,4 +75,4 @@ while(current < code.length){
     }
     current += len;
 }
-fs.writeFileSync("./lexerTokens.txt", tokens.toLocaleString())
+fs.writeFileSync("./lexerTokens.txt", tokens.toString())
